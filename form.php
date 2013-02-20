@@ -19,5 +19,22 @@
         <input id="input_x" name="x" type="number" value="<?php echo $x+1;?>" />
     </fieldset>
 
-    <button type="submit">Calculate</button>
+    <fieldset>
+		<legend>Algorithm</legend>
+
+        <input id="input_algorithm_std" name="algorithm" type="radio" value="std"<?php if($algorithm == 'std'){ echo ' checked'; }?> />
+        <label for="input_algorithm_std">Standard</label>
+
+		<input id="input_algorithm_warnsdorff" name="algorithm" type="radio" value="warnsdorff"<?php if($algorithm == 'warnsdorff'){ echo ' checked'; }?> />
+        <label for="input_algorithm_warnsdorff">Warnsdorff</label>
+	</fieldset>
+
+	<?php if(!$safe_request){?>
+		<p>The board size requested will take the selected algorithm some time to calculate. Are you sure you want to calculate this board?</p>
+
+		<input type="hidden" name="safety" value="off" />
+    	<button type="submit">Confirm</button>
+	<?php } else {?>
+    	<button type="submit">Calculate</button>
+	<?php }?>
 </form>
