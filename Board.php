@@ -8,6 +8,8 @@ class Board {
 	protected $width;
 	protected $height;
 	protected $size;
+	
+	protected $positions_visited;
 
 	public function __construct($width, $height){
 		$this->board	= $this->build_board($width, $height);
@@ -16,6 +18,8 @@ class Board {
 		$this->height	= $height;
 
 		$this->size	= $width*$height;
+		
+		$this->positions_visited	= 0;
 	}
 
 	protected function build_board($width, $height){
@@ -54,24 +58,34 @@ class Board {
 			throw new \OutOfRangeException('Position ['.$x.','.$y.'] does not exist in board of '.$this->width.'x'.$this->height);
 		}
 
+		if($this->board[$y][$x] != $state){
+			// Increase visit count for true states, decrease for false
+			$state ? $this->positions_visited++ : $this->positions_visited--;
+		}
+		
 		$this->board[$y][$x]	= $state;
+	}
+
+	public function get_dimensions($assoc = true){
+		return $assoc ? array(
+			'width'		=> $this->width,
+			'height'	=> $this->height
+		) : array(
+			$this->width,
+			$this->height
+		);
 	}
 
 	public function get_size(){
 		return $this->size;
 	}
 
-	public function is_solved(){
-		for($y = 0; $y < $this->height; $y++){
-			for($x = 0; $x < $this->width; $x++){
-				if($this->board[$y][$x] === false){
-					echo "[$y, $x]";
-					return false;
-				}
-			}
-		}
+	public function get_positions_visited(){
+		return $this->positions_visited;
+	}
 
-		return true;
+	public function is_solved(){
+		return $this->get_positions_visited() == $this->get_size();
 	}
 
 	public function output_demo($moves){
