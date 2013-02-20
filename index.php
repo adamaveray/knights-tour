@@ -5,11 +5,16 @@ require_once('Board.php');
 require_once('Knight.php');
 require_once('WarnsdorffKnight.php');
 
-$width	= 5;
-$height	= 6;
+function get_input($name, $fallback = null, $filter = FILTER_VALIDATE_INT){
+	$val	= filter_input(INPUT_GET, $name, $filter);
+	return isset($val) ? $val : $fallback;
+}
 
-$x = 0;
-$y = 0;
+$width	= get_input('width', 7);
+$height	= get_input('width', 7);
+
+$x = get_input('x', 1)-1;	// 0-indexed
+$y = get_input('y', 1)-1;	// 0-indexed
 
 // Initialise environment
 $board	= new \Board($width, $height);
@@ -17,6 +22,10 @@ $knight	= new \WarnsdorffKnight($x, $y);
 
 // Solve board
 $result	= $knight->solve_board($board);
+
+
+
+include('form.php');
 
 // Show results
 $iterations	= $knight->get_iterations();
