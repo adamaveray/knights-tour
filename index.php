@@ -6,7 +6,7 @@ require_once('Knight.php');
 require_once('WarnsdorffKnight.php');
 
 function get_input($name, $fallback = null, $filter = FILTER_VALIDATE_INT){
-	$val	= filter_input(INPUT_GET, $name, $filter);
+	$val	= filter_input(INPUT_GET, $name, ($filter === null ? FILTER_SANITIZE_STRING : $filter));
 	return (isset($val) && $val !== false) ? $val : $fallback;
 }
 
@@ -16,7 +16,7 @@ $height	= get_input('height', 7);
 $x = get_input('x', 1)-1;	// 0-indexed
 $y = get_input('y', 1)-1;	// 0-indexed
 
-$algorithm	= get_input('algorithm', 'warnsdorff', FILTER_SANITIZE_STRING);
+$algorithm	= get_input('algorithm', 'warnsdorff', null);
 switch($algorithm){
 	case 'warnsdorff':
 		$knight_class	= '\\WarnsdorffKnight';
