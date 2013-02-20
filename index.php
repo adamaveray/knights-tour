@@ -16,9 +16,21 @@ $height	= get_input('height', 7);
 $x = get_input('x', 1)-1;	// 0-indexed
 $y = get_input('y', 1)-1;	// 0-indexed
 
+$algorithm	= get_input('algorithm', 'warnsdorff', FILTER_SANITIZE_STRING);
+switch($algorithm){
+	case 'warnsdorff':
+		$knight_class	= '\\WarnsdorffKnight';
+		break;
+
+	case 'std':
+	default:
+		$knight_class	= '\\Knight';
+		break;
+}
+
 // Initialise environment
 $board	= new \Board($width, $height);
-$knight	= new \WarnsdorffKnight($x, $y);
+$knight	= new $knight_class($x, $y);
 
 // Solve board
 $result	= $knight->solve_board($board);

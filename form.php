@@ -19,5 +19,15 @@
         <input id="input_x" name="x" type="number" value="<?php echo $x+1;?>" />
     </fieldset>
 
+    <fieldset>
+		<legend>Algorithm</legend>
+
+        <input id="input_algorithm_std" name="algorithm" type="radio" value="std"<?php if($algorithm == 'std'){ echo ' checked'; }?> />
+        <label for="input_algorithm_std">Standard</label>
+
+		<input id="input_algorithm_warnsdorff" name="algorithm" type="radio" value="warnsdorff"<?php if($algorithm == 'warnsdorff'){ echo ' checked'; }?> />
+        <label for="input_algorithm_warnsdorff">Warnsdorff</label>
+	</fieldset>
+
     <button type="submit">Calculate</button>
 </form>
