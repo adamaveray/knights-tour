@@ -66,6 +66,16 @@ class Board {
 		$this->board[$y][$x]	= $state;
 	}
 
+	public function get_dimensions($assoc = true){
+		return $assoc ? array(
+			'width'		=> $this->width,
+			'height'	=> $this->height
+		) : array(
+			$this->width,
+			$this->height
+		);
+	}
+
 	public function get_size(){
 		return $this->size;
 	}

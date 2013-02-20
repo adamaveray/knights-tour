@@ -1,8 +1,9 @@
 <?php
 ini_set('max_execution_time', 60*2);	// Needs a while!
 
-require_once('Knight.php');
 require_once('Board.php');
+require_once('Knight.php');
+require_once('WarnsdorffKnight.php');
 
 $width	= 5;
 $height	= 6;
@@ -12,7 +13,7 @@ $y = 0;
 
 // Initialise environment
 $board	= new \Board($width, $height);
-$knight	= new \Knight($x, $y);
+$knight	= new \WarnsdorffKnight($x, $y);
 
 // Solve board
 $result	= $knight->solve_board($board);
