@@ -29,5 +29,12 @@
         <label for="input_algorithm_warnsdorff">Warnsdorff</label>
 	</fieldset>
 
-    <button type="submit">Calculate</button>
+	<?php if(!$safe_request){?>
+		<p>The board size requested will take the selected algorithm some time to calculate. Are you sure you want to calculate this board?</p>
+
+		<input type="hidden" name="safety" value="off" />
+    	<button type="submit">Confirm</button>
+	<?php } else {?>
+    	<button type="submit">Calculate</button>
+	<?php }?>
 </form>
