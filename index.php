@@ -24,6 +24,7 @@ switch($algorithm){
 
 	case 'std':
 	default:
+		$algorithm	= 'std';
 		$knight_class	= '\\Knight';
 		break;
 }
