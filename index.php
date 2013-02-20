@@ -7,7 +7,7 @@ require_once('WarnsdorffKnight.php');
 
 function get_input($name, $fallback = null, $filter = FILTER_VALIDATE_INT){
 	$val	= filter_input(INPUT_GET, $name, $filter);
-	return isset($val) ? $val : $fallback;
+	return (isset($val) && $val !== false) ? $val : $fallback;
 }
 
 $width	= get_input('width', 7);
