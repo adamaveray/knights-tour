@@ -11,7 +11,7 @@ function get_input($name, $fallback = null, $filter = FILTER_VALIDATE_INT){
 }
 
 $width	= get_input('width', 7);
-$height	= get_input('width', 7);
+$height	= get_input('height', 7);
 
 $x = get_input('x', 1)-1;	// 0-indexed
 $y = get_input('y', 1)-1;	// 0-indexed
